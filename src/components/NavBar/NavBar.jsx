@@ -1,13 +1,13 @@
-import React from 'react';
-import logo from '../assets/logo.png';
+import { NavLink } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 
 const NavBar = () => {
     const menuItems = [
-        { label: 'Home', href: '#', hideAt: 'md' },           
-        { label: 'About', href: '#', hideAt: 'lg' },         
-        { label: 'Services', href: '#', hideAt: 'xl' },    
-        { label: 'Portfolio', href: '#', hideAt: 'xl' },      
-        { label: 'Contact', href: '#', hideAt: '2xl' },     
+        { label: 'Home', to: '/', hideAt: 'md' },
+        { label: 'About', to: '/about', hideAt: 'lg' },
+        { label: 'Services', to: '/services', hideAt: 'xl' },
+        { label: 'Portfolio', to: '/portfolio', hideAt: 'xl' },
+        { label: 'Contact', to: '/contact', hideAt: '2xl' },
     ];
 
     const getHideClass = (hideAt) => {
@@ -31,7 +31,7 @@ const NavBar = () => {
     };
 
     return (
-        <div className="navbar flex justify-between bg-base-100 shadow-sm sticky top-0 z-50">
+        <div className="navbar flex justify-between bg-white shadow-sm sticky top-0 z-50">
             <div className="flex">
                 <img src={logo} alt="Logo" className="h-10 w-10" />
                 <a className="btn btn-ghost text-xl">Md.Ashraful Alam Rayhan</a>
@@ -44,9 +44,9 @@ const NavBar = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
-                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-white rounded-box w-52">
                         {menuItems.map((item, idx) => (
-                            <li key={idx}><a href={item.href}>{item.label}</a></li>
+                            <li key={idx}><NavLink to={item.to}>{item.label}</NavLink></li>
                         ))}
                     </ul>
                 </div>
@@ -56,17 +56,17 @@ const NavBar = () => {
                 <ul className="menu menu-horizontal px-1">
                     {menuItems.map((item, idx) => (
                         <li key={idx} className={getHideClass(item.hideAt)}>
-                            <a href={item.href}>{item.label}</a>
+                            <NavLink to={item.to}>{item.label}</NavLink>
                         </li>
                     ))}
 
                     <li className="dropdown dropdown-end">
                         <details>
                             <summary>More</summary>
-                            <ul className="bg-base-100 rounded-t-none p-2 min-w-48">
+                            <ul className="bg-white rounded-t-none p-2 min-w-48">
                                 {menuItems.map((item, idx) => (
                                     <li key={idx} className={getMoreItemClass(item.hideAt)}>
-                                        <a href={item.href}>{item.label}</a>
+                                        <NavLink to={item.to}>{item.label}</NavLink>
                                     </li>
                                 ))}
                             </ul>
